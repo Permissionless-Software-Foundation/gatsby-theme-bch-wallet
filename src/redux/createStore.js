@@ -76,15 +76,44 @@ const instanceWallet = () => {
   try {
     if (!localStorageInfo.mnemonic) return null
 
+    const bchjsOptions = getBchjsOptions()
+
+    const bchWalletLib = new BchWallet(localStorageInfo.mnemonic, bchjsOptions)
+     
+    // Update bchjs instances  of minimal-slp-wallet libraries
+    bchWalletLib.tokens.sendBch.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
+    bchWalletLib.tokens.utxos.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
+
+    return bchWalletLib
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+const getBchjsOptions = ()=> {
+  try {
+    const _interface = localStorageInfo.interface || 'consumer-api'
+
     const jwtToken = localStorageInfo.JWT
     const restURL = localStorageInfo.selectedServer
     const bchjsOptions = {}
+    
+    if(_interface === 'consumer-api'){
+      bchjsOptions.interface = _interface
+      return bchjsOptions
+    }
 
     if (jwtToken) {
       bchjsOptions.apiToken = jwtToken
+      
     }
+
     if (restURL) {
       bchjsOptions.restURL = restURL
+    }
+
+    if (_interface === 'rest-api') {
+      bchjsOptions.interface = _interface
     }
 
     // Assign the tx fee based on environment variable
@@ -92,13 +121,8 @@ const instanceWallet = () => {
     bchjsOptions.fee = FEE
     console.log(`Using ${bchjsOptions.fee} sats per byte for tx fees.`)
 
-    const bchWalletLib = new BchWallet(localStorageInfo.mnemonic, bchjsOptions)
 
-    // Update bchjs instances  of minimal-slp-wallet libraries
-    bchWalletLib.tokens.sendBch.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
-    bchWalletLib.tokens.utxos.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
-
-    return bchWalletLib
+    return bchjsOptions
   } catch (error) {
     console.warn(error)
   }

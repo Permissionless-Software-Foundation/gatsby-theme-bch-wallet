@@ -113,19 +113,8 @@ class ImportWallet extends React.Component {
         inFetch: true
       })
 
-      const apiToken = currentWallet.JWT
-      const restURL = currentWallet.selectedServer
+      const bchjsOptions = _this.getBchjsOptions()
 
-      const bchjsOptions = {}
-
-      if (apiToken || restURL) {
-        if (apiToken) {
-          bchjsOptions.apiToken = apiToken
-        }
-        if (restURL) {
-          bchjsOptions.restURL = restURL
-        }
-      }
 
       const bchWalletLib = new _this.BchWallet(
         _this.state.mnemonic,
@@ -140,6 +129,7 @@ class ImportWallet extends React.Component {
 
       const walletInfo = bchWalletLib.walletInfo
       walletInfo.from = 'imported'
+      walletInfo.interface = bchjsOptions.interface
 
       Object.assign(currentWallet, walletInfo)
 
@@ -172,7 +162,43 @@ class ImportWallet extends React.Component {
       _this.handleError(error)
     }
   }
+  getBchjsOptions (){
+    try {
+      const currentWallet = _this.props.walletInfo
+      // force interface from props
+      if(_this.props.interface){
+        currentWallet.interface = _this.props.interface
+      }
 
+      const _interface = currentWallet.interface || 'consumer-api'
+
+      const jwtToken = currentWallet.JWT
+      const restURL = currentWallet.selectedServer
+      const bchjsOptions = {}
+      
+      if(_interface === 'consumer-api'){
+        bchjsOptions.interface = _interface
+        return bchjsOptions
+      }
+  
+      if (jwtToken) {
+        bchjsOptions.apiToken = jwtToken
+        
+      }
+  
+      if (restURL) {
+        bchjsOptions.restURL = restURL
+      }
+  
+      if (_interface === 'rest-api') {
+        bchjsOptions.interface = _interface
+      }
+  
+      return bchjsOptions
+    } catch (error) {
+      console.warn(error)
+    }
+  }
   // Reset form and component state
   resetValues () {
     _this.setState({

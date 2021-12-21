@@ -215,6 +215,7 @@ class Servers extends React.Component {
       const { mnemonic, JWT } = _this.props.walletInfo
       const apiToken = JWT
       const restURL = _this.state.selectedServer
+      const _interface = _this.props.walletInfo.interface
 
       // Update instance with the selected url
       if (mnemonic) {
@@ -224,6 +225,8 @@ class Servers extends React.Component {
         }
 
         bchjsOptions.restURL = restURL
+        bchjsOptions.interface = _interface
+        //console.log('bchjs options : ', bchjsOptions)
 
         const bchWalletLib = new _this.BchWallet(mnemonic, bchjsOptions)
 
