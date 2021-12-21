@@ -7,6 +7,7 @@ import ImportWallet from './import'
 import NewWallet from './create'
 import InfoWallets from './info'
 import WalletInfo from './wallet-info'
+import { interfaces } from 'mocha'
 
 let _this
 class Wallet extends React.Component {
@@ -35,6 +36,8 @@ class Wallet extends React.Component {
               setWalletInfo={_this.props.setWalletInfo}
               setBchWallet={_this.props.setBchWallet}
               walletInfo={_this.props.walletInfo}
+              interface={_this.props.interface}
+
             />
 
             <ImportWallet
@@ -42,6 +45,7 @@ class Wallet extends React.Component {
               setWalletInfo={_this.props.setWalletInfo}
               setBchWallet={_this.props.setBchWallet}
               walletInfo={_this.props.walletInfo}
+              interface={_this.props.interface}
             />
           </>
         )}
@@ -56,7 +60,8 @@ Wallet.propTypes = {
   setWalletInfo: PropTypes.func.isRequired,
   walletInfo: PropTypes.object.isRequired,
   updateBalance: PropTypes.func.isRequired,
-  setBchWallet: PropTypes.func.isRequired
+  setBchWallet: PropTypes.func.isRequired,
+  interface :PropTypes.string
 }
 
 export default Wallet
