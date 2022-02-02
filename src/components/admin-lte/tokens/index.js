@@ -6,7 +6,7 @@ import TokenModal from './token-modal'
 import Spinner from '../../../images/loader.gif'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SendTokens from './send-tokens'
-import { SlpMutableData } from 'slp-mutable-data'
+// import { SlpMutableData } from 'slp-mutable-data'
 let _this
 class Tokens extends React.Component {
   constructor (props) {
@@ -271,20 +271,22 @@ class Tokens extends React.Component {
   async handleMutableData (tokensArr) {
     try {
       const tokens = []
-      const slpMutableLib = new SlpMutableData()
+      // const slpMutableLib = new SlpMutableData()
+
       for (let i = 0; i < tokensArr.length; i++) {
         const token = tokensArr[i]
-        try {
-          const data = await slpMutableLib.get.mutableData(token.tokenId)
-          token.mutableData = data
-          // console.log(`data: ${JSON.stringify(data, null, 2)}`)
-        } catch (error) {
-          // console.warn(error)
-          // Skip error
-          console.log(
-            `Could not access mutable data for ${token.ticker} (${token.tokenId})`
-          )
-        }
+        // try {
+        //   const data = await slpMutableLib.get.mutableData(token.tokenId)
+        //   token.mutableData = data
+        //   // console.log(`data: ${JSON.stringify(data, null, 2)}`)
+        // } catch (error) {
+        //   // console.warn(error)
+        //   // Skip error
+        //   console.log(
+        //     `Could not access mutable data for ${token.ticker} (${token.tokenId})`
+        //   )
+        // }
+
         tokens.push(token)
       }
 
@@ -295,10 +297,12 @@ class Tokens extends React.Component {
     }
   }
 }
+
 Tokens.propTypes = {
   walletInfo: PropTypes.object.isRequired, // wallet info
   bchWallet: PropTypes.object, // get minimal-slp-wallet instance
   setTokensInfo: PropTypes.func.isRequired, // set tokens info
   tokensInfo: PropTypes.array // tokens info
 }
+
 export default Tokens

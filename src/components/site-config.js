@@ -14,9 +14,10 @@ const config = {
   memoAddr: 'bitcoincash:qqwdv3hkmvd5vk0uhwqrqnef54542e5ctvy3ppt0nq',
 
   // Footer Information
-  hostText: 'FullStack.cash',
-  hostUrl: 'https://fullstack.cash/',
-  sourceCode: 'https://github.com/Permissionless-Software-Foundation/gatsby-ipfs-web-wallet',
+  hostText: 'Permissionless Software Foundation',
+  hostUrl: 'https://psfoundation.cash/',
+  sourceCode:
+    'https://github.com/Permissionless-Software-Foundation/gatsby-theme-bch-wallet',
   torUrl: '2egutot63q765ciwsenlcy5zdyxwxt7olzbldr5dx5i3ixsef2nvrzid.onion',
   clearWebUrl: 'https://gatsby-ipfs-web-wallet.fullstack.cash'
 }

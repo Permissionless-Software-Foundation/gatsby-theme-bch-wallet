@@ -29,9 +29,11 @@ class Footer extends React.Component {
 
   async componentDidMount () {
     // Get hash using memo service
-    await this.handleMemoService()
+    // await this.handleMemoService()
   }
 
+  // This function retrieves the IPFS CID for the latest copy of this app. That
+  // CID is written to the BCH blockchain.
   async handleMemoService () {
     // This is a hard-coded hash or 'checkpoint' to use in times when the
     // connection fails.
@@ -57,79 +59,33 @@ class Footer extends React.Component {
 
   render () {
     return (
-      <section id='footer'>
-        <Row className='footer-container'>
-          <Col md={5} className='footer-section'>
+      <section id="footer">
+        <Row className="footer-container">
+          <Col md={12} className="footer-section">
             <Row>
-              <Col md={12} className='mb-1'>
-                <p className='section-tittle'>Produced By</p>
+              <Col md={12} className="mb-1">
+                <p className="section-tittle">Produced By</p>
 
                 <a
                   href={siteConfig.hostUrl}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {siteConfig.hostText}
                 </a>
               </Col>
               <Col md={12}>
-                <p className='section-tittle'>Source Code</p>
-                <FontAwesomeIcon className='' size='lg' icon={faGithub} />
+                <p className="section-tittle">Source Code</p>
+                <FontAwesomeIcon className="" size="lg" icon={faGithub} />
                 <a
                   href={siteConfig.sourceCode}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Github
                 </a>
               </Col>
             </Row>
-          </Col>
-          <Col md={7} className='footer-section'>
-            <div className='pull-right'>
-              <p className='section-tittle'>Ways to access this web-app</p>
-              <ul>
-                <li id='web'>
-                  <span>
-                    <b>Web</b>
-                  </span>
-                  <b className='bar-space'>|</b>
-                  <a href={siteConfig.clearWebUrl}>{siteConfig.clearWebUrl}</a>
-                </li>
-
-                <li id='tor'>
-                  <span>
-                    <b>Tor</b>
-                  </span>
-                  <b className='bar-space'>|</b>
-                  <a href={`http://${siteConfig.torUrl}`}>
-                    {siteConfig.torUrl}
-                  </a>
-                </li>
-
-                <li id='ipfs'>
-                  <span>
-                    <b>IPFS</b>
-                  </span>
-                  <b className='bar-space'>|</b>
-                  <a href={_this.state.ipfsHashLink}>{this.state.ipfsHash}</a>
-                </li>
-
-                <li id='memo'>
-                  <span>
-                    <b>Memo</b>
-                  </span>
-                  <b className='bar-space'>|</b>
-                  <a
-                    href={`https://memo.cash/profile/${siteConfig.memoAddr}`}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    {siteConfig.memoAddr}
-                  </a>
-                </li>
-              </ul>
-            </div>
           </Col>
         </Row>
       </section>
