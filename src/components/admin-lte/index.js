@@ -132,16 +132,20 @@ class AdminLTEPage extends React.Component {
         await bchWalletLib.walletInfoPromise
         const myBalance = await bchWalletLib.getBalance()
 
-        const bchjs = bchWalletLib.bchjs
+        // const bchjs = bchWalletLib.bchjs
 
-        let currentRate
+        const currentRate = (await bchWalletLib.getUsd()) * 100
+        console.log('currentRate: ', currentRate)
 
-        if (bchjs.restURL.includes('abc.fullstack')) {
-          currentRate = (await bchjs.Price.getBchaUsd()) * 100
-        } else {
-          // BCHN price.
-          currentRate = (await bchjs.Price.getUsd()) * 100
-        }
+        // if (bchjs.restURL.includes('abc.fullstack')) {
+        //   currentRate = (await bchjs.Price.getBchaUsd()) * 100
+        // } else if (siteConfig.interface === 'consumer-api') {
+        //   bchjs.restURL = `${siteConfig.restURL}/`
+        //   currentRate = (await bchjs.Price.getUsd()) * 100
+        // } else {
+        //   // BCHN price.
+        //   currentRate = (await bchjs.Price.getUsd()) * 100
+        // }
 
         _this.setState({
           currentRate: currentRate

@@ -31,22 +31,22 @@ class Tokens extends React.Component {
     return (
       <>
         <Button
-          text="Refresh"
-          icon="fa-redo"
-          type="primary"
-          className="btn-md ml-1 mt-1 mb-1"
+          text='Refresh'
+          icon='fa-redo'
+          type='primary'
+          className='btn-md ml-1 mt-1 mb-1'
           onClick={() => _this.handleGetTokens(true)}
         />
         {_this.state.txId && (
-          <div className="txIdContainer">
+          <div className='txIdContainer'>
             <button onClick={() => _this.setState({ txId: null })}>
               &times;
             </button>
-            <Col xs={12} className="text-center mt-1">
-              <Box title="Transaction ID" type="primary" className="p-0">
+            <Col xs={12} className='text-center mt-1'>
+              <Box title='Transaction ID' type='primary' className='p-0'>
                 <a
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target='_blank'
+                  rel='noopener noreferrer'
                   href={`${_this.state.explorerURL}/${_this.state.txId}`}
                 >
                   {_this.state.txId}
@@ -71,46 +71,46 @@ class Tokens extends React.Component {
         )}
         {_this.state.inFetch
           ? (
-          <div className="spinner">
-            <img alt="Loading..." src={Spinner} width={100} />
-          </div>
+            <div className='spinner'>
+              <img alt='Loading...' src={Spinner} width={100} />
+            </div>
             )
           : (
-          <Content>
-            {_this.state.errMsg && (
-              <Box padding="true" className="container-nofound">
-                <Row>
-                  <Col xs={12}>
-                    <em>{_this.state.errMsg}</em>
-                  </Col>
-                </Row>
-              </Box>
-            )}
+            <Content>
+              {_this.state.errMsg && (
+                <Box padding='true' className='container-nofound'>
+                  <Row>
+                    <Col xs={12}>
+                      <em>{_this.state.errMsg}</em>
+                    </Col>
+                  </Row>
+                </Box>
+              )}
 
-            {_this.state.tokens.length > 0 && (
-              <>
-                <Row>
-                  {_this.state.tokens.map((val, i) => {
-                    if (val.qty > 0) {
-                      return (
-                        <Col sm={4} key={`token-${i}`}>
-                          <TokenCard
-                            key={`token-${i}`}
-                            id={`token-${i}`}
-                            token={val}
-                            showToken={_this.showToken}
-                            selectToken={_this.selectToken}
-                          />
-                        </Col>
-                      )
-                    } else {
-                      return <span key={`token-${i}`} />
-                    }
-                  })}
-                </Row>
-              </>
-            )}
-          </Content>
+              {_this.state.tokens.length > 0 && (
+                <>
+                  <Row>
+                    {_this.state.tokens.map((val, i) => {
+                      if (val.qty > 0) {
+                        return (
+                          <Col sm={4} key={`token-${i}`}>
+                            <TokenCard
+                              key={`token-${i}`}
+                              id={`token-${i}`}
+                              token={val}
+                              showToken={_this.showToken}
+                              selectToken={_this.selectToken}
+                            />
+                          </Col>
+                        )
+                      } else {
+                        return <span key={`token-${i}`} />
+                      }
+                    })}
+                  </Row>
+                </>
+              )}
+            </Content>
             )}
         <TokenModal
           bchWallet={_this.props.bchWallet}
@@ -227,9 +227,9 @@ class Tokens extends React.Component {
             Rate limits exceeded, increase rate limits with a JWT token from
             <a
               style={{ marginLeft: '5px' }}
-              target="_blank"
-              href="https://fullstack.cash"
-              rel="noopener noreferrer"
+              target='_blank'
+              href='https://fullstack.cash'
+              rel='noopener noreferrer'
             >
               FullStack.cash
             </a>

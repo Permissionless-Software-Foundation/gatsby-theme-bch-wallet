@@ -19,7 +19,14 @@ const config = {
   sourceCode:
     'https://github.com/Permissionless-Software-Foundation/gatsby-theme-bch-wallet',
   torUrl: '2egutot63q765ciwsenlcy5zdyxwxt7olzbldr5dx5i3ixsef2nvrzid.onion',
-  clearWebUrl: 'https://gatsby-ipfs-web-wallet.fullstack.cash'
+  clearWebUrl: 'https://gatsby-ipfs-web-wallet.fullstack.cash',
+
+  // Interface used by minial-slp-wallet
+  interface: 'consumer-api',
+  restURL: 'https://free-bch.fullstack.cash'
+  // restURL: 'http://localhost:5005'
+  // interface: 'rest-api',
+  // restURL: 'https://bchn.fullstack.cash/v5/'
 }
 
 module.exports = config

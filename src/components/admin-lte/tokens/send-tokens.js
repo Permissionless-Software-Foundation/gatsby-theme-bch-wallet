@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ScannerModal from '../../qr-scanner/modal'
 const { Text } = Inputs
 
+const siteConfig = require('../../site-config')
+
 const BchWallet = typeof window !== 'undefined' ? window.SlpWallet : null
 
 let _this
@@ -216,12 +218,23 @@ class SendTokens extends React.Component {
       const result = await bchWalletLib.sendTokens(receiver, 5.0)
       // console.log('result: ', result)
 
-      _this.setState({
-        txId: result,
-        inFetch: false
-      })
+      if (siteConfig.interface === 'consumer-api') {
+        _this.setState({
+          txId: result.txid,
+          inFetch: false
+        })
 
-      _this.props.setTxId(result) /* Set the transaction ID in Tokens state */
+        // Set the transaction ID in Tokens state
+        _this.props.setTxId(result.txid)
+      } else {
+        _this.setState({
+          txId: result,
+          inFetch: false
+        })
+
+        // Set the transaction ID in Tokens state
+        _this.props.setTxId(result)
+      }
 
       _this.resetValues()
 

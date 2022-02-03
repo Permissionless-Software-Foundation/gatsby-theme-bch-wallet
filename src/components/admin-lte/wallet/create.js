@@ -4,10 +4,9 @@ import { Row, Col, Box, Button } from 'adminlte-2-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import BchWallet from 'minimal-slp-wallet'
 
-const BchWallet =
-  typeof window !== 'undefined'
-    ? window.SlpWallet
-    : null
+const siteConfig = require('../../site-config')
+
+const BchWallet = typeof window !== 'undefined' ? window.SlpWallet : null
 
 let _this
 class NewWallet extends React.Component {
@@ -79,7 +78,7 @@ class NewWallet extends React.Component {
       _this.setState({
         inFetch: true
       })
-     
+
       const bchjsOptions = _this.getBchjsOptions()
 
       const bchWalletLib = new _this.BchWallet(null, bchjsOptions)
@@ -103,7 +102,7 @@ class NewWallet extends React.Component {
       let currentRate
 
       if (bchjs.restURL.includes('abc.fullstack')) {
-        currentRate = await bchjs.Price.getBchaUsd() * 100
+        currentRate = (await bchjs.Price.getBchaUsd()) * 100
       } else {
         // BCHN price.
         currentRate = (await bchjs.Price.getUsd()) * 100
@@ -123,43 +122,45 @@ class NewWallet extends React.Component {
       _this.handleError(error)
     }
   }
-   getBchjsOptions (){
+
+  getBchjsOptions () {
     try {
       const currentWallet = _this.props.walletInfo
       // force interface from props
-      if(_this.props.interface){
+      if (_this.props.interface) {
         currentWallet.interface = _this.props.interface
       }
 
-      const _interface = currentWallet.interface || 'consumer-api'
+      const _interface = currentWallet.interface || siteConfig.interface
 
       const jwtToken = currentWallet.JWT
       const restURL = currentWallet.selectedServer
       const bchjsOptions = {}
-      
-      if(_interface === 'consumer-api'){
+
+      if (_interface === 'consumer-api') {
         bchjsOptions.interface = _interface
+        bchjsOptions.restURL = siteConfig.restURL
         return bchjsOptions
       }
-  
+
       if (jwtToken) {
         bchjsOptions.apiToken = jwtToken
-        
       }
-  
+
       if (restURL) {
         bchjsOptions.restURL = restURL
       }
-  
+
       if (_interface === 'rest-api') {
         bchjsOptions.interface = _interface
       }
-  
+
       return bchjsOptions
     } catch (error) {
       console.warn(error)
     }
   }
+
   handleError (error) {
     // console.error(error)
     let errMsg = ''

@@ -13,7 +13,7 @@ const { Text } = Inputs
 
 let _this
 class JsonWebTokens extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     _this = this
@@ -26,7 +26,7 @@ class JsonWebTokens extends React.Component {
     _this.BchWallet = BchWallet
   }
 
-  render() {
+  render () {
     return (
       <Row>
         <Col sm={12}>
@@ -70,7 +70,7 @@ class JsonWebTokens extends React.Component {
     )
   }
 
-  setJwt() {
+  setJwt () {
     const { JWT } = _this.props.walletInfo
     if (JWT) {
       const jwtElem = document.getElementById('jwt')
@@ -78,36 +78,35 @@ class JsonWebTokens extends React.Component {
     }
   }
 
-  handleUpdate(event) {
+  handleUpdate (event) {
     const value = event.target.value
     _this.setState({
       [event.target.name]: value
     })
   }
 
-  async handleUpdateJWT() {
+  async handleUpdateJWT () {
     try {
       const { mnemonic, selectedServer } = _this.props.walletInfo
       const _interface = _this.props.walletInfo.interface
-
 
       const apiToken = _this.state.JWT
 
       // Update instance with JWT
       if (mnemonic) {
-        let bchjsOptions = { apiToken: apiToken }
+        const bchjsOptions = { apiToken: apiToken }
         if (selectedServer) {
           bchjsOptions.restURL = selectedServer
         }
 
         bchjsOptions.interface = _interface
-        //console.log('bchjs options : ', bchjsOptions)
+        // console.log('bchjs options : ', bchjsOptions)
         const bchWalletLib = new _this.BchWallet(mnemonic, bchjsOptions)
 
         // Update bchjs instances  of minimal-slp-wallet libraries
         bchWalletLib.tokens.sendBch.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
         bchWalletLib.tokens.utxos.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
-        
+
         _this.props.setBchWallet(bchWalletLib)
       }
 
@@ -124,7 +123,7 @@ class JsonWebTokens extends React.Component {
   }
 
   // Reset form and component state
-  resetValues() {
+  resetValues () {
     _this.setState({
       JWT: '',
       errMsg: ''
@@ -133,7 +132,7 @@ class JsonWebTokens extends React.Component {
     jwtElem.value = ''
   }
 
-  componentDidMount() {
+  componentDidMount () {
     _this.setJwt()
   }
 }
