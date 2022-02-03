@@ -28,31 +28,31 @@ class NewWallet extends React.Component {
           <Col sm={2} />
           <Col sm={8}>
             <Box
-              className="hover-shadow border-none mt-2"
+              className='hover-shadow border-none mt-2'
               loaded={!_this.state.inFetch}
             >
               <Row>
-                <Col sm={12} className="text-center">
+                <Col sm={12} className='text-center'>
                   <h1>
                     <FontAwesomeIcon
-                      className="title-icon"
-                      size="xs"
-                      icon="plus"
+                      className='title-icon'
+                      size='xs'
+                      icon='plus'
                     />
                     <span>New Wallet</span>
                   </h1>
                 </Col>
-                <Col sm={12} className="text-center mt-2 mb-2">
+                <Col sm={12} className='text-center mt-2 mb-2'>
                   <Button
-                    text="Create Wallet"
-                    type="primary"
-                    className="btn-lg"
+                    text='Create Wallet'
+                    type='primary'
+                    className='btn-lg'
                     onClick={_this.handleCreateWallet}
                   />
                 </Col>
-                <Col sm={12} className="text-center ">
+                <Col sm={12} className='text-center '>
                   {_this.state.errMsg && (
-                    <p className="error-color mt-2">{_this.state.errMsg}</p>
+                    <p className='error-color mt-2'>{_this.state.errMsg}</p>
                   )}
                 </Col>
               </Row>
@@ -174,9 +174,9 @@ class NewWallet extends React.Component {
             Rate limits exceeded, increase rate limits with a JWT token from
             <a
               style={{ marginLeft: '5px' }}
-              target="_blank"
-              href="https://fullstack.cash"
-              rel="noopener noreferrer"
+              target='_blank'
+              href='https://fullstack.cash'
+              rel='noopener noreferrer'
             >
               FullStack.cash
             </a>

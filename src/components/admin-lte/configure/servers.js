@@ -226,7 +226,7 @@ class Servers extends React.Component {
 
         bchjsOptions.restURL = restURL
         bchjsOptions.interface = _interface
-        //console.log('bchjs options : ', bchjsOptions)
+        // console.log('bchjs options : ', bchjsOptions)
 
         const bchWalletLib = new _this.BchWallet(mnemonic, bchjsOptions)
 
