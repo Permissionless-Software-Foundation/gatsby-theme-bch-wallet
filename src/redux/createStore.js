@@ -4,6 +4,8 @@ import { getWalletInfo, setWalletInfo } from '../components/localWallet'
 // import BchWallet from 'minimal-slp-wallet'
 const BchWallet = typeof window !== 'undefined' ? window.SlpWallet : null
 
+const siteConfig = require('../components/site-config')
+
 const reducer = (state, action) => {
   // Update walletInfo state property
   if (action.type === 'SET_WALLET_INFO') {
@@ -79,7 +81,7 @@ const instanceWallet = () => {
     const bchjsOptions = getBchjsOptions()
 
     const bchWalletLib = new BchWallet(localStorageInfo.mnemonic, bchjsOptions)
-     
+
     // Update bchjs instances  of minimal-slp-wallet libraries
     bchWalletLib.tokens.sendBch.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
     bchWalletLib.tokens.utxos.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
@@ -90,22 +92,22 @@ const instanceWallet = () => {
   }
 }
 
-const getBchjsOptions = ()=> {
+const getBchjsOptions = () => {
   try {
-    const _interface = localStorageInfo.interface || 'consumer-api'
+    const _interface = localStorageInfo.interface || siteConfig.interface
 
     const jwtToken = localStorageInfo.JWT
     const restURL = localStorageInfo.selectedServer
     const bchjsOptions = {}
-    
-    if(_interface === 'consumer-api'){
+
+    if (_interface === 'consumer-api') {
       bchjsOptions.interface = _interface
+      bchjsOptions.restURL = siteConfig.restURL
       return bchjsOptions
     }
 
     if (jwtToken) {
       bchjsOptions.apiToken = jwtToken
-      
     }
 
     if (restURL) {
@@ -120,7 +122,6 @@ const getBchjsOptions = ()=> {
     const FEE = process.env.FEE ? process.env.FEE : 1
     bchjsOptions.fee = FEE
     console.log(`Using ${bchjsOptions.fee} sats per byte for tx fees.`)
-
 
     return bchjsOptions
   } catch (error) {
