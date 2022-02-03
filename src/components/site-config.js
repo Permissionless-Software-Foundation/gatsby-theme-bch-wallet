@@ -23,7 +23,8 @@ const config = {
 
   // Interface used by minial-slp-wallet
   interface: 'consumer-api',
-  restURL: 'https://free-bch.fullstack.cash/'
+  restURL: 'https://free-bch.fullstack.cash'
+  // restURL: 'http://localhost:5005'
   // interface: 'rest-api',
   // restURL: 'https://bchn.fullstack.cash/v5/'
 }
