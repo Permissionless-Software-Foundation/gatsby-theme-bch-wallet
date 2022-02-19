@@ -59,28 +59,28 @@ class Footer extends React.Component {
 
   render () {
     return (
-      <section id="footer">
-        <Row className="footer-container">
-          <Col md={12} className="footer-section">
+      <section id='footer'>
+        <Row className='footer-container'>
+          <Col md={12} className='footer-section'>
             <Row>
-              <Col md={12} className="mb-1">
-                <p className="section-tittle">Produced By</p>
+              <Col md={12} className='mb-1'>
+                <p className='section-tittle'>Produced By</p>
 
                 <a
                   href={siteConfig.hostUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   {siteConfig.hostText}
                 </a>
               </Col>
               <Col md={12}>
-                <p className="section-tittle">Source Code</p>
-                <FontAwesomeIcon className="" size="lg" icon={faGithub} />
+                <p className='section-tittle'>Source Code</p>
+                <FontAwesomeIcon className='' size='lg' icon={faGithub} />
                 <a
                   href={siteConfig.sourceCode}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   Github
                 </a>
