@@ -9,18 +9,18 @@ export default function HTML (props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
-        <meta charSet='utf-8' />
-        <meta httpEquiv='x-ua-compatible' content='ie=edge' />
+        <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1, shrink-to-fit=no'
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
         {/* Loading animation should be loaded very first thing. */}
         <div
-          className='test'
-          key='loader'
-          id='___loader'
+          className="test"
+          key="loader"
+          id="___loader"
           style={{
             alignItems: 'center',
             backgroundColor: '#F2F2F2',
@@ -34,15 +34,16 @@ export default function HTML (props) {
             zIndex: 9000,
             flexDirection: 'column'
           }}
-        ><img src='https://i.imgur.com/8n8PYAi.gif' alt='' width='250' />
+        >
+          <img src="https://i.imgur.com/8n8PYAi.gif" alt="" width="250" />
           Loading...
         </div>
 
         {/* minimal-slp-wallet */}
-        <script src='https://unpkg.com/minimal-slp-wallet' />
+        <script src="https://unpkg.com/minimal-slp-wallet" />
 
         {/* bch-message-lib */}
-        <script src='https://unpkg.com/bch-message-lib' />
+        {/* <script src='https://unpkg.com/bch-message-lib' /> */}
 
         {props.headComponents}
       </head>
@@ -50,8 +51,8 @@ export default function HTML (props) {
         {props.preBodyComponents}
         <div>
           <div
-            key='body'
-            id='___gatsby'
+            key="body"
+            id="___gatsby"
             dangerouslySetInnerHTML={{ __html: props.body }}
           />
         </div>
