@@ -145,8 +145,8 @@ class Send extends React.Component {
   }
 
   componentDidMount () {
-    const { bchWallet } = _this.props
-    console.log('bchWallet', bchWallet)
+    // const { bchWallet } = _this.props
+    // console.log('bchWallet', bchWallet)
     _this.defineExplorer()
   }
 
