@@ -23,7 +23,9 @@ exports.onCreateWebpackConfig = ({ stage, actions, getConfig, plugins }) => {
       alias: {
         react: path.resolve('./node_modules/react'),
         'react-dom': path.resolve('./node_modules/react-dom'),
-        process: 'process/browser'
+        process: 'process/browser',
+        mocha: false
+
       }
     }
   })
