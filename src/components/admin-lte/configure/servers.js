@@ -21,7 +21,8 @@ class Servers extends React.Component {
       selectedServer: '',
       showAddField: false,
       newServer: '',
-      inFetch: false
+      inFetch: false,
+      currentServer: ''
     }
     _this.BchWallet = BchWallet
   }
@@ -90,6 +91,7 @@ class Servers extends React.Component {
                     text='Update'
                     type='primary'
                     className='btn-lg'
+                    disabled={_this.state.selectedServer === _this.state.currentServer}
                     onClick={_this.handleUpdateServer}
                   />
                 </Box>
@@ -178,6 +180,7 @@ class Servers extends React.Component {
       }
       _this.setState({
         selectOptions,
+        currentServer: walletInfo.selectedServer,
         selectedServer: walletInfo.selectedServer
       })
     } catch (error) {
@@ -207,6 +210,9 @@ class Servers extends React.Component {
     setTimeout(() => {
       _this.updateWalletInstance()
     }, 500)
+    _this.setState({
+      currentServer: _this.state.selectedServer
+    })
   }
 
   // Update the wallet instance state

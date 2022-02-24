@@ -405,15 +405,15 @@ class AdminLTEPage extends React.Component {
       // return if servers configurations exist
       if (walletInfo.selectedServer) return null
 
-      const server1 = 'https://bchn.fullstack.cash/v5/'
-      const server2 = 'https://abc.fullstack.cash/v5/'
+      const server1 = 'https://free-bch.fullstack.cash/'
+      const server2 = 'http://localhost:5005/'
 
       const servers = [server1, server2]
 
       // Default server is BCHN.
-      let selectedServer = server1
+      const selectedServer = server1
 
-      if (accessLocation === 'wallet.fullstack.cash') {
+      /*       if (accessLocation === 'wallet.fullstack.cash') {
         selectedServer = server1
       }
 
@@ -429,7 +429,7 @@ class AdminLTEPage extends React.Component {
       // Split uses BCHN by default
       if (accessLocation === 'splitbch.com') {
         selectedServer = server1
-      }
+      } */
 
       walletInfo.selectedServer = selectedServer
       walletInfo.servers = servers

@@ -139,7 +139,7 @@ class NewWallet extends React.Component {
 
       if (_interface === 'consumer-api') {
         bchjsOptions.interface = _interface
-        bchjsOptions.restURL = siteConfig.restURL
+        bchjsOptions.restURL = restURL
         return bchjsOptions
       }
 
