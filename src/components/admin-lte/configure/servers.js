@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, Box, Inputs, Button } from 'adminlte-2-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import BchWallet from 'minimal-slp-wallet'
-
+const Gist = require('../../../services/fetch-servers')
 const BchWallet = typeof window !== 'undefined' ? window.SlpWallet : null
 
 const { Text, Select } = Inputs
@@ -164,17 +164,21 @@ class Servers extends React.Component {
   }
 
   // populate select field with select options from localstorage
-  populateSelect () {
+  populateSelect (externalsServers = []) {
     try {
       const walletInfo = _this.props.walletInfo
+      const appServers = walletInfo.servers
+      const allServers = appServers.concat(externalsServers)
+      // Remove duplicates
+      const servers = [...new Set(allServers)]
 
       const selectOptions = []
 
       // populate select field with data from localstorage
-      for (let i = 0; i < walletInfo.servers.length; i++) {
+      for (let i = 0; i < servers.length; i++) {
         const option = {
-          value: walletInfo.servers[i],
-          text: walletInfo.servers[i]
+          value: servers[i],
+          text: servers[i]
         }
         selectOptions.push(option)
       }
@@ -188,8 +192,9 @@ class Servers extends React.Component {
     }
   }
 
-  componentDidMount () {
-    _this.populateSelect()
+  async componentDidMount () {
+    const externalsServers = await _this.getGistServers()
+    _this.populateSelect(externalsServers)
   }
 
   handleUpdate (event) {
@@ -324,6 +329,31 @@ class Servers extends React.Component {
       _this.setState({
         inFetch: false
       })
+    }
+  }
+
+  async getGistServers () {
+    try {
+      _this.setState({
+        inFetch: true
+      })
+      const gistLib = new Gist()
+      const gistServers = await gistLib.getServerList()
+
+      const serversArr = []
+      for (let i = 0; i < gistServers.length; i++) {
+        serversArr.push(gistServers[i].url)
+      }
+      _this.setState({
+        inFetch: false
+      })
+      return serversArr
+    } catch (error) {
+      console.warn(error)
+      _this.setState({
+        inFetch: false
+      })
+      return []
     }
   }
 
