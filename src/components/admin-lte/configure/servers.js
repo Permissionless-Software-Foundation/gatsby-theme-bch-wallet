@@ -64,7 +64,7 @@ class Servers extends React.Component {
                                 type='primary'
                                 onClick={_this.handleNewServerUrl}
                               />
-                          }
+                            }
                           />
                           )
                         : (
@@ -80,7 +80,7 @@ class Servers extends React.Component {
                                 icon='fa-plus'
                                 onClick={_this.handleTextField}
                               />
-                          }
+                            }
                           />
                           )}
                     </Col>
@@ -303,16 +303,7 @@ class Servers extends React.Component {
         await bchWalletLib.walletInfoPromise
         const myBalance = await bchWalletLib.getBalance()
 
-        const bchjs = bchWalletLib.bchjs
-
-        let currentRate
-
-        if (bchjs.restURL.includes('abc.fullstack')) {
-          currentRate = (await bchjs.Price.getBchaUsd()) * 100
-        } else {
-          // BCHN price.
-          currentRate = (await bchjs.Price.getUsd()) * 100
-        }
+        const currentRate = (await bchWalletLib.getUsd()) * 100
 
         _this.setState({
           currentRate: currentRate
