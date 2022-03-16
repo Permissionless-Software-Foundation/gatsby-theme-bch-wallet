@@ -284,16 +284,8 @@ class Send extends React.Component {
       // update balance
       setTimeout(async () => {
         const myBalance = await bchWalletLib.getBalance()
-        const bchjs = bchWalletLib.bchjs
 
-        let currentRate
-
-        if (bchjs.restURL.includes('abc.fullstack')) {
-          currentRate = (await bchjs.Price.getBchaUsd()) * 100
-        } else {
-          // BCHN price.
-          currentRate = (await bchjs.Price.getUsd()) * 100
-        }
+        const currentRate = (await bchWalletLib.getUsd()) * 100
 
         _this.props.updateBalance({ myBalance, currentRate })
       }, 1000)
@@ -365,16 +357,8 @@ class Send extends React.Component {
       // update balance
       setTimeout(async () => {
         const myBalance = await bchWalletLib.getBalance()
-        const bchjs = bchWalletLib.bchjs
 
-        let currentRate
-
-        if (bchjs.restURL.includes('abc.fullstack')) {
-          currentRate = (await bchjs.Price.getBchaUsd()) * 100
-        } else {
-          // BCHN price.
-          currentRate = (await bchjs.Price.getUsd()) * 100
-        }
+        const currentRate = (await bchWalletLib.getUsd()) * 100
 
         _this.props.updateBalance({ myBalance, currentRate })
       }, 1000)

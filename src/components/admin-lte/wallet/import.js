@@ -135,15 +135,7 @@ class ImportWallet extends React.Component {
       Object.assign(currentWallet, walletInfo)
 
       const myBalance = await bchWalletLib.getBalance()
-      const bchjs = bchWalletLib.bchjs
-      let currentRate
-
-      if (bchjs.restURL.includes('abc.fullstack')) {
-        currentRate = (await bchjs.Price.getBchaUsd()) * 100
-      } else {
-        // BCHN price.
-        currentRate = (await bchjs.Price.getUsd()) * 100
-      }
+      const currentRate = (await bchWalletLib.getUsd()) * 100
 
       _this.setState({
         currentRate: currentRate
