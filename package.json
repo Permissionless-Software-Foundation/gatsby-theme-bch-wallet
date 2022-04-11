@@ -1,0 +1,94 @@
+{
+  "name": "gatsby-theme-bch-wallet",
+  "description": "A GatsbyJS Theme with AdminLTE integration and basic Bitcoin Cash wallet functionality.",
+  "version": "1.3.0",
+  "main": "index.js",
+  "author": "Chris Troutner <chris.troutner@gmail.com>",
+  "contributors": [
+    "Daniel Gonzalez <danielhumgon@gmail.com>",
+    "Andre Cabrera <andrecabrera@protonmail.ch>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "build:ipfs": "gatsby build --prefix-paths",
+    "android:setup": "npx cap add android; npx cap update android; npx cap update android; npx cap copy android; capacitor-resources -p android -I",
+    "android:open": "npx cap open android",
+    "develop": "gatsby develop",
+    "lint": "standard --env mocha --fix",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "npm run lint",
+    "unit": "mocha test/unit/"
+  },
+  "dependencies": {
+    "@capacitor/android": "3.4.1",
+    "@capacitor/cli": "3.4.1",
+    "@capacitor/core": "3.4.1",
+    "adminlte-2-react": "0.1.31",
+    "assert": "2.0.0",
+    "browserify-zlib": "0.2.0",
+    "capacitor-resources": "2.0.5",
+    "copy-to-clipboard": "3.3.1",
+    "crypto-browserify": "3.12.0",
+    "deepmerge": "4.2.2",
+    "fs-extra": "10.0.0",
+    "gatsby": "4.7.2",
+    "gatsby-plugin-image": "2.7.0",
+    "gatsby-plugin-manifest": "4.7.0",
+    "gatsby-plugin-react-helmet": "5.7.0",
+    "gatsby-plugin-sharp": "4.7.0",
+    "gatsby-source-filesystem": "4.7.0",
+    "gatsby-transformer-sharp": "4.7.0",
+    "https-browserify": "1.0.0",
+    "jsonrpc-lite": "2.2.0",
+    "p-queue": "7.2.0",
+    "p-retry": "5.0.0",
+    "path-browserify": "1.0.1",
+    "process": "0.11.10",
+    "prop-types": "15.8.1",
+    "qrcode.react": "1.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-helmet": "6.1.0",
+    "react-jdenticon": "0.0.9",
+    "react-qr-reader": "2.2.1",
+    "react-redux": "7.2.6",
+    "semver": "7.3.5",
+    "sharp": "0.30.1",
+    "slp-mutable-data": "1.8.1",
+    "stream-browserify": "3.0.0",
+    "stream-http": "3.2.0"
+  },
+  "devDependencies": {
+    "colors": "1.4.0",
+    "eslint": "8.9.0",
+    "eslint-config-prettier": "8.4.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-standard": "5.0.0",
+    "husky": "7.0.4",
+    "mocha": "9.2.1",
+    "prettier": "2.5.1",
+    "semantic-release": "19.0.2",
+    "standard": "16.0.4"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Permissionless-Software-Foundation/gatsby-theme-bch-wallet"
+  },
+  "bugs": {
+    "url": "https://github.com/Permissionless-Software-Foundation/gatsby-theme-bch-wallet/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
