@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Row, Col, Box, Button } from 'adminlte-2-react'
 import Jdenticon from 'react-jdenticon'
 import './token.css'
+
 let _this
+
 class TokenCard extends React.Component {
   constructor (props) {
     super(props)
@@ -42,7 +44,7 @@ class TokenCard extends React.Component {
               </div>
             </Col>
 
-            <Col xs={6} className='text-center mb-1'>
+            <Col xs={4} className='text-center mb-1'>
               <Button
                 text='Info'
                 type='primary'
@@ -52,7 +54,19 @@ class TokenCard extends React.Component {
                 }}
               />
             </Col>
-            <Col xs={6} className='text-center'>
+
+            <Col xs={4} className='text-center mb-1'>
+              <Button
+                text='Sell'
+                type='primary'
+                className='btn-lg max-width'
+                onClick={() => {
+                  _this.props.showSellModal(token)
+                }}
+              />
+            </Col>
+
+            <Col xs={4} className='text-center'>
               <Button
                 text='Send'
                 type='primary'

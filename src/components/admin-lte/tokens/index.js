@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import { Content, Row, Col, Box, Button } from 'adminlte-2-react'
 import TokenCard from './token-card'
 import TokenModal from './token-modal'
+import SellModal from './sell-modal'
 import Spinner from '../../../images/loader.gif'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SendTokens from './send-tokens'
 // import { SlpMutableData } from 'slp-mutable-data'
+
 let _this
+
 class Tokens extends React.Component {
   constructor (props) {
     super(props)
@@ -16,6 +19,7 @@ class Tokens extends React.Component {
       tokens: [],
       selectedTokenToView: '',
       showModal: false,
+      showSellModal: false,
       inFetch: true,
       errMsg: '',
       selectedTokenToSend: '',
@@ -99,6 +103,7 @@ class Tokens extends React.Component {
                               id={`token-${i}`}
                               token={val}
                               showToken={_this.showToken}
+                              showSellModal={_this.showSellModal}
                               selectToken={_this.selectToken}
                             />
                           </Col>
@@ -112,6 +117,7 @@ class Tokens extends React.Component {
               )}
             </Content>
             )}
+
         <TokenModal
           bchWallet={_this.props.bchWallet}
           token={
@@ -121,6 +127,18 @@ class Tokens extends React.Component {
           }
           handleOnHide={_this.onHandleToggleModal}
           show={_this.state.showModal}
+          explorerURL={_this.state.explorerURL}
+        />
+
+        <SellModal
+          bchWallet={_this.props.bchWallet}
+          token={
+            _this.state.selectedTokenToView
+              ? _this.state.selectedTokenToView
+              : {}
+          }
+          handleOnHide={_this.onHandleToggleSellModal}
+          show={_this.state.showSellModal}
           explorerURL={_this.state.explorerURL}
         />
       </>
@@ -196,6 +214,14 @@ class Tokens extends React.Component {
     _this.onHandleToggleModal()
   }
 
+  // This is called by the token-card when the 'Sell' button is clicked.
+  showSellModal (selectedTokenToView) {
+    _this.setState({
+      selectedTokenToView
+    })
+    _this.onHandleToggleSellModal()
+  }
+
   selectToken (selectedTokenToSend) {
     _this.setState({
       selectedTokenToSend
@@ -209,6 +235,15 @@ class Tokens extends React.Component {
   onHandleToggleModal (refresh = null) {
     _this.setState({
       showModal: !_this.state.showModal
+    })
+    if (refresh) {
+      _this.handleGetTokens(true)
+    }
+  }
+
+  onHandleToggleSellModal (refresh = null) {
+    _this.setState({
+      showSellModal: !_this.state.showSellModal
     })
     if (refresh) {
       _this.handleGetTokens(true)
