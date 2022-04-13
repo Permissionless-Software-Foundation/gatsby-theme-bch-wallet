@@ -1,14 +1,14 @@
 import React from 'react'
-import { Row, Col, Content, Box, DataTable, Button, Inputs } from 'adminlte-2-react'
+import { Row, Col, Content, Box, DataTable, Button } from 'adminlte-2-react'
 import Details from './details'
 import './orders.css'
 import Spinner from '../../../images/loader.gif'
-const { Text } = Inputs
+// const { Text } = Inputs
 
 const axios = require('axios').default
 const siteConfig = require('../../site-config')
 
-let SERVER = siteConfig.bchDexUrl
+const SERVER = siteConfig.bchDexUrl
 
 // const EXPLORER_URL = 'https://explorer.bitcoin.com/bch/tx/'
 
@@ -189,8 +189,8 @@ class Orders extends React.Component {
       const data = []
       // console.log(`dataArr: ${JSON.stringify(dataArr, null, 2)}`)
 
-      if(!this.props.bchWallet) {
-        console.log(`BCH wallet is not initialized. Can not calculate price of BCH or tokens.`)
+      if (!this.props.bchWallet) {
+        console.log('BCH wallet is not initialized. Can not calculate price of BCH or tokens.')
         return
       }
 

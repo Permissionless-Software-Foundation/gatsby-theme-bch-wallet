@@ -242,7 +242,7 @@ class SellModal extends React.Component {
   }
 
   // Update the quantity of tokens to sell
-  handleSellQty(event) {
+  handleSellQty (event) {
     const value = event.target.value
     // console.log('value: ', value)
 
@@ -253,7 +253,7 @@ class SellModal extends React.Component {
     // console.log('_this.state.sellQty: ', _this.state.sellQty)
   }
 
-  handlePricePerToken(event) {
+  handlePricePerToken (event) {
     const value = event.target.value
     // console.log('value: ', value)
 
@@ -289,11 +289,11 @@ class SellModal extends React.Component {
   // This is called when the user clicks the 'Sell' button to place their order.
   handleConfirm () {
     // Verify that inputs are valid.
-    if(isNaN(_this.state.sellQty)) {
+    if (isNaN(_this.state.sellQty)) {
       alert('Token quantity must be a number.')
       return
     }
-    if(isNaN(_this.state.pricePerToken)) {
+    if (isNaN(_this.state.pricePerToken)) {
       alert('Price per token must be a number.')
       return
     }
@@ -317,7 +317,7 @@ class SellModal extends React.Component {
     }, 200)
   }
 
-  async sellTokens(isConfirmed) {
+  async sellTokens (isConfirmed) {
     try {
       // Dismiss
       if (!isConfirmed) {
@@ -336,7 +336,7 @@ class SellModal extends React.Component {
       console.log('token: ', token)
 
       // Error if trying to sell more tokens than the wallet holds.
-      if(token.qty < _this.state.sellQty) {
+      if (token.qty < _this.state.sellQty) {
         alert(`Error: The wallet has ${token.qty} tokens, which is less than the ${_this.state.sellQty} tokens you are trying to sell.`)
       }
 
@@ -345,7 +345,7 @@ class SellModal extends React.Component {
       // Convert the dollar amount of tokens to sats.
       const bchSpotPrice = await bchWallet.getUsd()
       console.log('bchSpotPrice: ', bchSpotPrice)
-      const bchPerToken = _this.state.pricePerToken/bchSpotPrice
+      const bchPerToken = _this.state.pricePerToken / bchSpotPrice
       console.log('bchPerToken: ', bchPerToken)
       const satsPerToken = Math.floor(bchWallet.bchjs.BitcoinCash.toSatoshi(bchPerToken))
       console.log('satsPerToken: ', satsPerToken)
@@ -359,12 +359,12 @@ class SellModal extends React.Component {
           buyOrSell: 'sell',
           numTokens: _this.state.sellQty,
           rateInBaseUnit: satsPerToken,
-          minUnitsToExchange: satsPerToken*_this.state.sellQty,
+          minUnitsToExchange: satsPerToken * _this.state.sellQty
         }
       }
 
       const result = await axios.post(`${siteConfig.bchDexUrl}/order`, orderObj)
-      console.log(`result.data: `, result.data)
+      console.log('result.data: ', result.data)
 
       // console.log('starting sleep')
       // await bchWallet.bchjs.Util.sleep(5000)
@@ -375,7 +375,7 @@ class SellModal extends React.Component {
         txId: result.data.hash,
         inFetch: false
       })
-    } catch(error) {
+    } catch (error) {
       console.warn(error)
       _this.setState({
         errMsg: error.message,
