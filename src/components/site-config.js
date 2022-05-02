@@ -36,10 +36,12 @@ const config = {
 }
 
 // Attempt to auto-detect the URL for the bch-dex.
-if(window && window.document && window.document.domain) {
-  if(window.document.domain.includes('192.168') ||
-    window.document.domain.includes('localhost')) {
-    config.bchDexUrl = `http://${window.document.domain}:5700`
+if (typeof window !== 'undefined') {
+  if (window && window.document && window.document.domain) {
+    if (window.document.domain.includes('192.168') ||
+      window.document.domain.includes('localhost')) {
+      config.bchDexUrl = `http://${window.document.domain}:5700`
+    }
   }
 }
 
