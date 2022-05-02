@@ -203,7 +203,8 @@ class Orders extends React.Component {
         const order = dataArr[i]
         // console.log(`order: ${JSON.stringify(order, null, 2)}`)
 
-        const satsTotal = order.numTokens * order.rateInBaseUnit
+        const satsTotal = Math.ceil(order.numTokens * order.rateInBaseUnit)
+        console.log(`satsTotal: ${satsTotal}`)
         let usdTotal = bchSpotPrice * this.props.bchWallet.bchjs.BitcoinCash.toBitcoinCash(satsTotal)
         usdTotal = `$${this.props.bchWallet.bchjs.Util.floor8(usdTotal)}`
 
