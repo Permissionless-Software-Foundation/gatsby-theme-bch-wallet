@@ -286,8 +286,15 @@ class Tokens extends React.Component {
         const token = tokensArr[i]
 
         try {
+          // OLD code. This can be deleted.
+          // // Get token data from bch-api.
+          // const tokenData = await bchjs.PsfSlpIndexer.getTokenData(token.tokenId)
+          // // console.log(`tokenData ${i}: ${JSON.stringify(tokenData, null, 2)}`)
+
+          await bchWalletLib.walletInfoPromise
+
           // Get token data from bch-api.
-          const tokenData = await bchjs.PsfSlpIndexer.getTokenData(token.tokenId)
+          const tokenData = await bchWalletLib.getTokenData(token.tokenId)
           // console.log(`tokenData ${i}: ${JSON.stringify(tokenData, null, 2)}`)
 
           // Extract the raw CID.
@@ -309,6 +316,7 @@ class Tokens extends React.Component {
             token.immutableData = immutableData.data
             // console.log('token.immutableData: ', token.immutableData)
           }
+
         } catch (error) {
           console.warn(error)
           // Skip error
