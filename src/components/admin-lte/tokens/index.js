@@ -12,7 +12,6 @@ import axios from 'axios'
 
 const isIpfs = require('is-ipfs')
 
-
 let _this
 
 class Tokens extends React.Component {
@@ -310,7 +309,7 @@ class Tokens extends React.Component {
   async handleMutableData (tokensArr) {
     try {
       const bchWalletLib = _this.props.bchWallet
-      const bchjs = bchWalletLib.bchjs
+      // const bchjs = bchWalletLib.bchjs
 
       const tokens = []
       // const slpMutableLib = new SlpMutableData()
@@ -319,8 +318,15 @@ class Tokens extends React.Component {
         const token = tokensArr[i]
 
         try {
+          // OLD code. This can be deleted.
+          // // Get token data from bch-api.
+          // const tokenData = await bchjs.PsfSlpIndexer.getTokenData(token.tokenId)
+          // // console.log(`tokenData ${i}: ${JSON.stringify(tokenData, null, 2)}`)
+
+          await bchWalletLib.walletInfoPromise
+
           // Get token data from bch-api.
-          const tokenData = await bchjs.PsfSlpIndexer.getTokenData(token.tokenId)
+          const tokenData = await bchWalletLib.getTokenData(token.tokenId)
           // console.log(`tokenData ${i}: ${JSON.stringify(tokenData, null, 2)}`)
 
           // Extract the raw CID.
