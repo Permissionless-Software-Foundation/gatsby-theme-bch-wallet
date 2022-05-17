@@ -11,7 +11,6 @@ import axios from 'axios'
 
 const isIpfs = require('is-ipfs')
 
-
 let _this
 
 class Tokens extends React.Component {
@@ -277,7 +276,7 @@ class Tokens extends React.Component {
   async handleMutableData (tokensArr) {
     try {
       const bchWalletLib = _this.props.bchWallet
-      const bchjs = bchWalletLib.bchjs
+      // const bchjs = bchWalletLib.bchjs
 
       const tokens = []
       // const slpMutableLib = new SlpMutableData()
@@ -316,7 +315,6 @@ class Tokens extends React.Component {
             token.immutableData = immutableData.data
             // console.log('token.immutableData: ', token.immutableData)
           }
-
         } catch (error) {
           console.warn(error)
           // Skip error
