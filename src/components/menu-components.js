@@ -5,7 +5,6 @@ import Wallet from './admin-lte/wallet'
 import Tokens from './admin-lte/tokens'
 import Configure from './admin-lte/configure'
 import SendReceive from './admin-lte/send-receive'
-import Orders from './admin-lte/orders'
 
 const { Item } = Sidebar
 
@@ -13,11 +12,6 @@ const MenuComponents = props => {
   return [
     {
       active: true,
-      key: 'Orders',
-      component: <Orders key='Orders' {...props} />,
-      menuItem: <Item icon='fas-coins' key='Orders' text='Orders' />
-    },
-    {
       key: 'Tokens',
       component: <Tokens key='Tokens' {...props} />,
       menuItem: (
