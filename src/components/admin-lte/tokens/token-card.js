@@ -44,7 +44,7 @@ class TokenCard extends React.Component {
               </div>
             </Col>
 
-            <Col xs={4} className='text-center mb-1'>
+            <Col xs={6} className='text-center mb-1'>
               <Button
                 text='Info'
                 type='primary'
@@ -55,18 +55,7 @@ class TokenCard extends React.Component {
               />
             </Col>
 
-            <Col xs={4} className='text-center mb-1'>
-              <Button
-                text='Sell'
-                type='primary'
-                className='btn-lg max-width'
-                onClick={() => {
-                  _this.props.showSellModal(token)
-                }}
-              />
-            </Col>
-
-            <Col xs={4} className='text-center'>
+            <Col xs={6} className='text-center'>
               <Button
                 text='Send'
                 type='primary'

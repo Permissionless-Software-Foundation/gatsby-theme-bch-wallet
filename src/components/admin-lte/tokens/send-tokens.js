@@ -102,7 +102,7 @@ class SendTokens extends React.Component {
                   {_this.state.errMsg && (
                     <p className='error-color'>{_this.state.errMsg}</p>
                   )}
-                  {/* {_this.state.txId && (
+                  {_this.state.txId && (
                     <p className=''>
                       Transaction ID:
                       <a
@@ -113,7 +113,7 @@ class SendTokens extends React.Component {
                         {_this.state.txId}
                       </a>
                     </p>
-                  )} */}
+                  )}
                   {name && (
                     <span>
                       Selected Token : <b>{name}</b>
@@ -216,16 +216,16 @@ class SendTokens extends React.Component {
 
       // Send token.
       const result = await bchWalletLib.sendTokens(receiver, 5.0)
-      // console.log('result: ', result)
+      console.log('txid: ', result)
 
       if (siteConfig.interface === 'consumer-api') {
         _this.setState({
-          txId: result.txid,
+          txId: result,
           inFetch: false
         })
 
         // Set the transaction ID in Tokens state
-        _this.props.setTxId(result.txid)
+        _this.props.setTxId(result)
       } else {
         _this.setState({
           txId: result,
